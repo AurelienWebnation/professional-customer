@@ -84,8 +84,12 @@ function display_ht_and_ttc_cart_total_for_pro($total) {
     return $total;
 }
 
-// 30% de réduction pour les professionnels appliqué au prix régulier
+// Appliquer la réduction de 30% pour les professionnels
+add_filter('woocommerce_product_get_price', 'apply_pro_price_discount', 10, 2);
 add_filter('woocommerce_product_get_regular_price', 'apply_pro_price_discount', 10, 2);
+add_filter('woocommerce_product_variation_get_price', 'apply_pro_price_discount', 10, 2);
+add_filter('woocommerce_product_variation_get_regular_price', 'apply_pro_price_discount', 10, 2);
+
 function apply_pro_price_discount($price, $product) {
     if (is_user_logged_in() && is_professional()) {
         $price = $price * 0.7;
