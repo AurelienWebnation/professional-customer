@@ -4,10 +4,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 function display_ht_price($price_ttc, $display_ttc = false) {
-    $price_ht = (float)$price_ttc / 1.2;
+    $price_ttc_with_discount = (float)$price_ttc * 0.7;
+    $price_ht = $price_ttc_with_discount / 1.2;
 
     if ($display_ttc) {
-        return wc_price($price_ht) . ' ' . __('HT', 'textdomain') . ' (' . wc_price($price_ttc) . ' ' . __('TTC', 'textdomain') . ')';
+        return wc_price($price_ht) . ' ' . __('HT', 'textdomain') . ' (' . wc_price($price_ttc_with_discount) . ' ' . __('TTC', 'textdomain') . ')';
     }
 
     return wc_price($price_ht) . ' HT';
@@ -40,14 +41,13 @@ function display_ht_and_ttc_in_cart_for_pro($price, $cart_item, $cart_item_key) 
     return $price;
 }
 
-// Sous-total du panier
+// Sous-total
 add_filter('woocommerce_cart_subtotal', 'display_ht_and_ttc_cart_subtotal_for_pro', 10, 3);
 function display_ht_and_ttc_cart_subtotal_for_pro($subtotal, $cart, $with_tax) {
     if (is_user_logged_in()) {
         if (is_professional()) {
             $subtotal_ttc = 0;
 
-            // Calculer le sous-total avec la réduction
             foreach (WC()->cart->get_cart() as $cart_item) {
                 $product = $cart_item['data'];
                 $quantity = $cart_item['quantity'];
@@ -62,7 +62,7 @@ function display_ht_and_ttc_cart_subtotal_for_pro($subtotal, $cart, $with_tax) {
     return $subtotal;
 }
 
-// Total de la commande
+// Total
 add_filter('woocommerce_cart_total', 'display_ht_and_ttc_cart_total_for_pro', 10, 1);
 function display_ht_and_ttc_cart_total_for_pro($total) {
     if (is_user_logged_in()) {
@@ -82,18 +82,4 @@ function display_ht_and_ttc_cart_total_for_pro($total) {
     }
 
     return $total;
-}
-
-// Appliquer la réduction de 30% pour les professionnels
-add_filter('woocommerce_product_get_price', 'apply_pro_price_discount', 10, 2);
-add_filter('woocommerce_product_get_regular_price', 'apply_pro_price_discount', 10, 2);
-add_filter('woocommerce_product_variation_get_price', 'apply_pro_price_discount', 10, 2);
-add_filter('woocommerce_product_variation_get_regular_price', 'apply_pro_price_discount', 10, 2);
-
-function apply_pro_price_discount($price, $product) {
-    if (is_user_logged_in() && is_professional()) {
-        $price = $price * 0.7;
-    }
-
-    return $price;
 }

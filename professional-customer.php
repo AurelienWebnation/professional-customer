@@ -18,5 +18,6 @@ defined('PROF_CUSTOMER_URL') or define('PROF_CUSTOMER_URL', plugin_dir_url(__FIL
 require_once PROF_CUSTOMER_PLUGIN_PATH . 'helpers.php';
 require_once PROF_CUSTOMER_PLUGIN_PATH . 'registration.php';
 require_once PROF_CUSTOMER_PLUGIN_PATH . 'ht-prices.php';
+require_once PROF_CUSTOMER_PLUGIN_PATH . 'discount.php';
 require_once PROF_CUSTOMER_PLUGIN_PATH . 'admin/edit.php';
 require_once PROF_CUSTOMER_PLUGIN_PATH . 'admin/display.php';
