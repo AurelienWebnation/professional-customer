@@ -19,5 +19,6 @@ require_once PROF_CUSTOMER_PLUGIN_PATH . 'helpers.php';
 require_once PROF_CUSTOMER_PLUGIN_PATH . 'registration.php';
 require_once PROF_CUSTOMER_PLUGIN_PATH . 'ht-prices.php';
 require_once PROF_CUSTOMER_PLUGIN_PATH . 'discount.php';
-require_once PROF_CUSTOMER_PLUGIN_PATH . 'admin/edit.php';
-require_once PROF_CUSTOMER_PLUGIN_PATH . 'admin/display.php';
+require_once PROF_CUSTOMER_PLUGIN_PATH . 'admin/edit-customer-status.php';
+require_once PROF_CUSTOMER_PLUGIN_PATH . 'admin/display-customer-status.php';
+require_once PROF_CUSTOMER_PLUGIN_PATH . 'admin/edit-discount.php';

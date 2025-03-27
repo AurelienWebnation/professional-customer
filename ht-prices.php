@@ -1,10 +1,13 @@
 <?php
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
 function display_ht_price($price_ttc, $display_ttc = false) {
-    $price_ttc_with_discount = (float)$price_ttc * 0.7;
+    $discount_multiplier = get_pro_discount_multiplier();
+
+    $price_ttc_with_discount = (float)$price_ttc * $discount_multiplier;
     $price_ht = $price_ttc_with_discount / 1.2;
 
     if ($display_ttc) {

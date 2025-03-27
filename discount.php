@@ -1,4 +1,5 @@
 <?php
+
 if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly
 }
@@ -12,7 +13,9 @@ function apply_professional_discount($cart) {
 
     if (is_user_logged_in() && function_exists('is_professional') && is_professional()) {
         $subtotal_ttc = $cart->subtotal;
-        $discount_ttc = $subtotal_ttc * 0.3;
+
+        $discount_multiplier = get_pro_discount_multiplier();
+        $discount_ttc = $subtotal_ttc * (1 - $discount_multiplier);
         $discount_ht = $discount_ttc / 1.2;
 
         $cart->add_fee(__('Réduction Professionnelle', 'woocommerce'), -$discount_ht, false);
