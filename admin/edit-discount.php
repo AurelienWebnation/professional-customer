@@ -9,7 +9,7 @@ function reduction_pro_add_admin_menu() {
     add_menu_page(
         'Réduction Pro',                       // Titre de la page
         'Réduction Pro',                       // Titre du menu
-        'manage_options',                      // Capability
+        'manage_woocommerce',                  // Capability
         'reduction_pro',                       // Slug
         'reduction_pro_options_page',          // Callback
         'dashicons-money-alt',                 // Icône (voir note ci-dessous)
