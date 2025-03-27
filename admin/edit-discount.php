@@ -23,7 +23,7 @@ function reduction_pro_settings_init() {
 
     add_settings_section(
         'reduction_pro_section',
-        'Paramètres de la réduction Pro',
+        null,
         null,
         'reduction_pro'
     );
